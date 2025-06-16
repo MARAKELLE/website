@@ -1,193 +1,170 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marakelle</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #C40000; /* rosso brand */
-            color: #FFFFFF;
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            animation: fadeIn 1.5s ease-in;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marakelle</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0; padding: 0;
+      background-color: #C50305;
+      color: #FFFFFF;
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      animation: fadeIn 1.5s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+    header {
+      padding: 30px 20px 10px;
+      text-align: center;
+      background-color: #C50305; /* match sfondo */
+    }
+    header img {
+      display: block;
+      margin: auto;
+      width: 180px;
+      height: auto;
+      border: none;            /* nessun bordo */
+      background: transparent; /* sfondo trasparente */
+    }
 
-        header {
-            padding: 30px 20px 10px 20px;
-            text-align: center;
-        }
+    nav {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    nav a {
+      color: #FFFFFF;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 600;
+      font-size: 1.1em;
+      transition: opacity 0.3s;
+    }
+    nav a:hover { opacity: 0.7; }
 
-        header img {
-            width: 180px;
-            height: auto;
-        }
+    section {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      background-color: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      margin-bottom: 40px;
+    }
 
-        nav {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+    h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #FFFFFF;
+      padding-bottom: 10px;
+    }
 
-        nav a {
-            color: #FFFFFF;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 600;
-            font-size: 1.1em;
-            transition: opacity 0.3s;
-        }
+    .servizi {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .servizio {
+      background-color: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    .servizio:hover { transform: translateY(-5px); }
 
-        nav a:hover {
-            opacity: 0.7;
-        }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    input, textarea {
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+    button {
+      padding: 12px;
+      background-color: #FFFFFF;
+      color: #C50305;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover { opacity: 0.85; }
 
-        section {
-            max-width: 900px;
-            margin: auto;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            margin-bottom: 40px;
-        }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.95em;
+      background-color: rgba(255,255,255,0.05);
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
 
-        h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #FFFFFF;
-            padding-bottom: 10px;
-        }
-
-        .servizi {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .servizio {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            transition: transform 0.3s;
-        }
-
-        .servizio:hover {
-            transform: translateY(-5px);
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        input, textarea {
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1em;
-        }
-
-        button {
-            padding: 12px;
-            background-color: #FFFFFF;
-            color: #C40000;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        button:hover {
-            opacity: 0.85;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.95em;
-            background-color: rgba(255,255,255,0.05);
-            border-top: 1px solid rgba(255,255,255,0.2);
-        }
-
-        @media (max-width: 768px) {
-            nav a {
-                display: block;
-                margin: 10px 0;
-            }
-
-            .servizi {
-                flex-direction: column;
-            }
-
-            section {
-                margin: 20px;
-            }
-        }
-    </style>
+    @media (max-width: 768px) {
+      nav a { display: block; margin: 10px 0; }
+      section { margin: 20px; }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-    <img src="NEWLOGO_MARAKELLE2.jpg" alt="Marakelle Logo">
-</header>
+  <header>
+    <img src="NEWLOGO_MARAKELLE2.png" alt="Marakelle Logo">
+  </header>
 
-<nav>
+  <nav>
     <a href="#home">Home</a>
     <a href="#servizi">Servizi</a>
     <a href="#contatti">Contatti</a>
-</nav>
+  </nav>
 
-<section id="home">
+  <section id="home">
     <h2>Benvenuto su Marakelle</h2>
-    <p>
-        Il tuo spazio online minimalista, elegante e professionale.
-    </p>
-</section>
+    <p>Il tuo spazio online minimalista, elegante e professionale.</p>
+  </section>
 
-<section id="servizi">
+  <section id="servizi">
     <h2>Servizi</h2>
     <div class="servizi">
-        <div class="servizio">
-            <h3>Consulenza</h3>
-            <p>Sessioni personalizzate per aiutarti a raggiungere i tuoi obiettivi con metodo e chiarezza.</p>
-        </div>
-        <div class="servizio">
-            <h3>Formazione</h3>
-            <p>Workshop e corsi su misura per il tuo sviluppo personale e professionale.</p>
-        </div>
-        <div class="servizio">
-            <h3>Supporto Continuo</h3>
-            <p>Ti accompagniamo passo dopo passo nel tuo percorso di crescita.</p>
-        </div>
+      <div class="servizio">
+        <h3>Consulenza</h3>
+        <p>Sessioni personalizzate per raggiungere i tuoi obiettivi.</p>
+      </div>
+      <div class="servizio">
+        <h3>Formazione</h3>
+        <p>Workshop e corsi su misura per il tuo sviluppo.</p>
+      </div>
+      <div class="servizio">
+        <h3>Supporto Continuo</h3>
+        <p>Accompagnamento costante nel tuo percorso di crescita.</p>
+      </div>
     </div>
-</section>
+  </section>
 
-<section id="contatti">
+  <section id="contatti">
     <h2>Contatti</h2>
     <form>
-        <input type="text" placeholder="Il tuo nome" required>
-        <input type="email" placeholder="La tua email" required>
-        <textarea rows="5" placeholder="Il tuo messaggio" required></textarea>
-        <button type="submit">Invia</button>
+      <input type="text" placeholder="Il tuo nome" required>
+      <input type="email" placeholder="La tua email" required>
+      <textarea rows="5" placeholder="Il tuo messaggio" required></textarea>
+      <button type="submit">Invia</button>
     </form>
-</section>
+  </section>
 
-<footer>
+  <footer>
     &copy; 2025 Marakelle. Tutti i diritti riservati.
-</footer>
+  </footer>
 
 </body>
 </html>
