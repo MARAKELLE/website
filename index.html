@@ -2,217 +2,184 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Marakelle</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-
-  <!-- FONT -->
+  <link rel="icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-
   <style>
-    /* RESET & BASE */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --brand-red: #C50305;
+      --white: #FFFFFF;
+      --gray-light: #F7F7F7;
+      --text-dark: #222;
+      --shadow: rgba(0,0,0,0.1);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #C50305; /* brand red */
-      color: #FFFFFF;
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      animation: fadeIn 1.5s ease-in;
+      background: var(--gray-light);
+      color: var(--text-dark);
+      line-height:1.6;
     }
-    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
 
-    /* NAVBAR */
-    nav {
-      width: 100%;
-      background: rgba(0,0,0,0.2);
-      padding: 15px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      position: fixed; top: 0; left: 0;
-      z-index: 100;
-    }
-    nav a {
-      color: #FFF; text-decoration: none;
-      font-weight: 600; padding: 5px 10px;
-      border-radius: 5px;
-      transition: background-color .3s;
-    }
-    nav a:hover { background: rgba(255,255,255,0.2); }
-    nav a.active { background: rgba(255,255,255,0.4); }
-
-    /* HEADER LOGO */
+    /* HEADER */
     header {
-      padding: 100px 0 20px; /* spacing for logo and navbar */
-      text-align: center;
-      width: 100%;
+      background: var(--white);
+      border-bottom: 4px solid var(--brand-red);
+      padding: 15px 20px;
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items:center; justify-content: space-between;
     }
     header img {
-      width: 180px; height: auto;
-      display: inline-block;
-      background: transparent;
-      border: none;
+      height: 40px;
     }
+    /* HAMBURGER */
+    #nav-toggle { display: none; }
+    .hamburger {
+      width: 24px; height:18px;
+      position: relative; cursor: pointer;
+    }
+    .hamburger span {
+      position: absolute; height: 3px; background: var(--text-dark);
+      width:100%; left:0; transition:0.3s;
+    }
+    .hamburger span:nth-child(1){ top:0; }
+    .hamburger span:nth-child(2){ top:7px; }
+    .hamburger span:nth-child(3){ top:14px; }
+    /* NAV */
+    nav {
+      position: absolute; top:100%; left:0; width:100%;
+      background: var(--white); box-shadow: 0 4px 10px var(--shadow);
+      max-height:0; overflow:hidden; transition: max-height 0.3s;
+    }
+    #nav-toggle:checked + .hamburger + nav {
+      max-height: 200px; /* sufficiente per 4-5 link */
+    }
+    nav a {
+      display:block; padding: 12px 20px;
+      text-decoration:none; color: var(--text-dark);
+      border-bottom:1px solid #eee;
+      font-weight:600;
+    }
+    nav a:last-child { border-bottom: none; }
+    nav a:hover { background:#f0f0f0; }
 
-    /* SECTIONS */
-    section {
-      width: 100%;
-      max-width: 900px;
-      margin: 40px auto;
+    /* SECTIONS WRAPPER */
+    main {
       padding: 20px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      margin-bottom: 40px;
+    }
+    section {
+      margin-bottom: 30px;
     }
     section h2 {
-      font-weight: 800;
-      font-size: 2em;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #FFF;
-      padding-bottom: 10px;
-    }
-    section p {
-      font-weight: 400;
-      font-size: 1rem;
-      color: #FFF;
-      margin-bottom: 10px;
+      font-size:1.5rem; font-weight:700;
+      margin-bottom:10px; color: var(--brand-red);
     }
 
-    /* “Listen Now” LINKS */
-    .links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
+    /* CARDS CONTAINER */
+    .card-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap:15px;
     }
-    .links a {
-      background: rgba(255,255,255,0.1);
-      color: #FFF;
-      text-decoration: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: background .3s, transform .2s;
-    }
-    .links a:hover {
-      background: rgba(255,255,255,0.2);
-      transform: translateY(-3px);
+    @media (max-width:480px) {
+      .card-container { grid-template-columns: 1fr; }
     }
 
-    /* SERVICES */
-    .services {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+    /* CARD */
+    .card {
+      background: var(--white);
+      border-radius:8px;
+      box-shadow: 0 2px 8px var(--shadow);
+      overflow:hidden;
+      transition: transform 0.2s;
     }
-    .service {
-      background: rgba(255,255,255,0.1);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      transition: transform .3s;
+    .card:hover { transform: translateY(-4px); }
+    .card a {
+      display:block; padding:20px;
+      text-align:center; text-decoration:none;
+      color: var(--text-dark); font-weight:600;
     }
-    .service:hover { transform: translateY(-5px); }
-    .service h3 { font-weight: 700; margin-bottom: 8px; }
 
     /* CONTACT FORM */
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
+    .contact-form {
+      background: var(--white);
+      padding:20px; border-radius:8px;
+      box-shadow: 0 2px 8px var(--shadow);
     }
-    input, textarea {
-      padding: 12px;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
+    .contact-form input,
+    .contact-form textarea {
+      width:100%; margin-bottom:15px;
+      padding:10px; border:1px solid #ddd;
+      border-radius:5px; font-size:1rem;
     }
-    button {
-      padding: 12px;
-      background: #FFF;
-      color: #C50305;
-      border: none;
-      border-radius: 5px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: opacity .3s;
+    .contact-form button {
+      width:100%; padding:12px;
+      background: var(--brand-red);
+      color: var(--white);
+      border:none; border-radius:5px;
+      font-size:1rem; font-weight:700;
+      cursor:pointer; transition:0.3s;
     }
-    button:hover { opacity: 0.85; }
+    .contact-form button:hover { opacity:0.9; }
 
-    /* FOOTER */
     footer {
-      width: 100%;
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-      background: rgba(255,255,255,0.05);
-      border-top: 1px solid rgba(255,255,255,0.2);
-      margin-top: auto;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width:768px) {
-      nav { flex-direction: column; gap: 10px; }
-      section { margin: 20px auto; }
+      text-align:center; padding:20px;
+      font-size:0.9rem; color:#555;
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="#home" class="active">Home</a>
-    <a href="#listen">Listen Now</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <header id="home">
+  <header>
     <img src="NEWLOGO_MARAKELLE2.png" alt="Marakelle Logo">
+    <input type="checkbox" id="nav-toggle">
+    <label class="hamburger" for="nav-toggle">
+      <span></span><span></span><span></span>
+    </label>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#listen">Listen Now</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <section id="listen">
-    <h2>Listen Now</h2>
-    <div class="links">
-      <a href="https://soundcloud.com/marakelle" target="_blank">SoundCloud</a>
-      <a href="https://open.spotify.com/artist/0k5oHLULi2yI3HWeIbPCxw?si=FpfvpscZRqGOgdJfCm70Tw" target="_blank">Spotify</a>
-      <a href="https://www.youtube.com/@Marakelle" target="_blank">YouTube</a>
-      <a href="https://instagram.com/marakellemusic" target="_blank">Instagram</a>
-    </div>
-  </section>
+  <main id="home">
+    <!-- LISTEN NOW -->
+    <section id="listen">
+      <h2>Listen Now</h2>
+      <div class="card-container">
+        <div class="card"><a href="https://soundcloud.com/marakelle" target="_blank">SoundCloud</a></div>
+        <div class="card"><a href="https://open.spotify.com/artist/0k5oHLULi2yI3HWeIbPCxw?si=FpfvpscZRqGOgdJfCm70Tw" target="_blank">Spotify</a></div>
+        <div class="card"><a href="https://www.youtube.com/@Marakelle" target="_blank">YouTube</a></div>
+        <div class="card"><a href="https://instagram.com/marakellemusic" target="_blank">Instagram</a></div>
+      </div>
+    </section>
 
-  <section id="services">
-    <h2>Services</h2>
-    <div class="services">
-      <div class="service">
-        <h3>Consulting</h3>
-        <p>Personalized sessions to help you achieve your goals.</p>
+    <!-- SERVICES -->
+    <section id="services">
+      <h2>Services</h2>
+      <div class="card-container">
+        <div class="card"><a href="#consulting">Consulting</a></div>
+        <div class="card"><a href="#training">Training</a></div>
+        <div class="card"><a href="#support">Ongoing Support</a></div>
       </div>
-      <div class="service">
-        <h3>Training</h3>
-        <p>Tailored workshops and courses for your development.</p>
-      </div>
-      <div class="service">
-        <h3>Ongoing Support</h3>
-        <p>Continuous guidance throughout your growth journey.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <form>
-      <input type="text" placeholder="Your name" required>
-      <input type="email" placeholder="Your email" required>
-      <textarea rows="5" placeholder="Your message" required></textarea>
-      <button type="submit">Send</button>
-    </form>
-  </section>
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="4" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
 
   <footer>
     &copy; 2025 Marakelle. All rights reserved.
