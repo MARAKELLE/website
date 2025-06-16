@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +14,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #C50305; /* rosso brand corretto */
+      background-color: #C50305; /* brand red */
       color: #FFFFFF;
       line-height: 1.6;
       min-height: 100vh;
@@ -47,7 +47,7 @@
 
     /* HEADER LOGO */
     header {
-      padding: 100px 0 20px; /* spaziatura per il logo e navbar */
+      padding: 100px 0 20px; /* spacing for logo and navbar */
       text-align: center;
       width: 100%;
     }
@@ -82,7 +82,7 @@
       margin-bottom: 10px;
     }
 
-    /* “Ascolta Ora” LINKS */
+    /* “Listen Now” LINKS */
     .links {
       display: flex;
       flex-wrap: wrap;
@@ -104,23 +104,23 @@
       transform: translateY(-3px);
     }
 
-    /* SERVIZI */
-    .servizi {
+    /* SERVICES */
+    .services {
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
-    .servizio {
+    .service {
       background: rgba(255,255,255,0.1);
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
       transition: transform .3s;
     }
-    .servizio:hover { transform: translateY(-5px); }
-    .servizio h3 { font-weight: 700; margin-bottom: 8px; }
+    .service:hover { transform: translateY(-5px); }
+    .service h3 { font-weight: 700; margin-bottom: 8px; }
 
-    /* FORM CONTATTI */
+    /* CONTACT FORM */
     form {
       display: flex;
       flex-direction: column;
@@ -167,17 +167,17 @@
 
   <nav>
     <a href="#home" class="active">Home</a>
-    <a href="#ascolta">Ascolta Ora</a>
-    <a href="#servizi">Servizi</a>
-    <a href="#contatti">Contatti</a>
+    <a href="#listen">Listen Now</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
   </nav>
 
   <header id="home">
     <img src="NEWLOGO_MARAKELLE2.png" alt="Marakelle Logo">
   </header>
 
-  <section id="ascolta">
-    <h2>Ascolta Ora</h2>
+  <section id="listen">
+    <h2>Listen Now</h2>
     <div class="links">
       <a href="https://soundcloud.com/marakelle" target="_blank">SoundCloud</a>
       <a href="https://open.spotify.com/artist/0k5oHLULi2yI3HWeIbPCxw?si=FpfvpscZRqGOgdJfCm70Tw" target="_blank">Spotify</a>
@@ -186,36 +186,36 @@
     </div>
   </section>
 
-  <section id="servizi">
-    <h2>Servizi</h2>
-    <div class="servizi">
-      <div class="servizio">
-        <h3>Consulenza</h3>
-        <p>Sessioni personalizzate per raggiungere i tuoi obiettivi.</p>
+  <section id="services">
+    <h2>Services</h2>
+    <div class="services">
+      <div class="service">
+        <h3>Consulting</h3>
+        <p>Personalized sessions to help you achieve your goals.</p>
       </div>
-      <div class="servizio">
-        <h3>Formazione</h3>
-        <p>Workshop e corsi su misura per il tuo sviluppo.</p>
+      <div class="service">
+        <h3>Training</h3>
+        <p>Tailored workshops and courses for your development.</p>
       </div>
-      <div class="servizio">
-        <h3>Supporto Continuo</h3>
-        <p>Accompagnamento costante nel tuo percorso di crescita.</p>
+      <div class="service">
+        <h3>Ongoing Support</h3>
+        <p>Continuous guidance throughout your growth journey.</p>
       </div>
     </div>
   </section>
 
-  <section id="contatti">
-    <h2>Contatti</h2>
+  <section id="contact">
+    <h2>Contact</h2>
     <form>
-      <input type="text" placeholder="Il tuo nome" required>
-      <input type="email" placeholder="La tua email" required>
-      <textarea rows="5" placeholder="Il tuo messaggio" required></textarea>
-      <button type="submit">Invia</button>
+      <input type="text" placeholder="Your name" required>
+      <input type="email" placeholder="Your email" required>
+      <textarea rows="5" placeholder="Your message" required></textarea>
+      <button type="submit">Send</button>
     </form>
   </section>
 
   <footer>
-    &copy; 2025 Marakelle. Tutti i diritti riservati.
+    &copy; 2025 Marakelle. All rights reserved.
   </footer>
 
 </body>
