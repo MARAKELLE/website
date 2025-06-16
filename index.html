@@ -100,6 +100,128 @@
     }
     .service:hover { transform: translateY(-5px); }
     .service h3 {
-      font-weight: 700; margin-bottom: 8px;
+      font-weight: 700; margin-bottom: 8px; color: #FFF;
+    }
 
-    
+    /* CONTACT FORM */
+    form {
+      display: flex; flex-direction: column; gap: 15px;
+    }
+    input, textarea {
+      padding: 12px; border: none; border-radius: 5px;
+      font-size: 1rem;
+    }
+    button {
+      padding: 12px; background: #FFF; color: #C50305;
+      border: none; border-radius: 5px;
+      font-weight: 700; font-size: 1.1rem;
+      cursor: pointer; transition: opacity .3s;
+    }
+    button:hover { opacity: 0.85; }
+
+    /* FOOTER */
+    footer {
+      width: 100%; text-align: center;
+      padding: 20px; font-size: 0.9rem;
+      background: rgba(255,255,255,0.05);
+      border-top: 1px solid rgba(255,255,255,0.2);
+      margin-top: auto; color: #FFF;
+    }
+
+    /* MOBILE: DRAWER MENU & LAYOUT TWEAKS */
+    @media (max-width: 768px) {
+      nav {
+        justify-content: space-between;
+      }
+      nav .hamburger {
+        display: block;
+      }
+      nav .nav-links {
+        flex-direction: column;
+        position: fixed; top: 0; left: 0;
+        width: 75%; height: 100vh;
+        background-color: #C50305;
+        transform: translateX(-100%);
+        transition: transform .3s ease-in-out;
+        padding-top: 80px; /* sotto la header */
+      }
+      nav input#nav-toggle:checked + label.hamburger + .nav-links {
+        transform: translateX(0);
+      }
+      nav .nav-links a {
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+      nav .nav-links a:last-child {
+        border-bottom: none;
+      }
+
+      /* riduci margini/spazi per mobile */
+      header { margin-top: 90px; }
+      section { margin: 20px; padding: 15px; }
+      .links a { flex: 1 1 100%; }
+      .services .service { margin-bottom: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <input type="checkbox" id="nav-toggle">
+    <label class="hamburger" for="nav-toggle">☰</label>
+    <div class="nav-links">
+      <a href="#home" class="active">Home</a>
+      <a href="#listen">Listen Now</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header id="home">
+    <img src="NEWLOGO_MARAKELLE2.png" alt="Marakelle Logo">
+  </header>
+
+  <section id="listen">
+    <h2>Listen Now</h2>
+    <div class="links">
+      <a href="https://soundcloud.com/marakelle" target="_blank">SoundCloud</a>
+      <a href="https://open.spotify.com/artist/0k5oHLULi2yI3HWeIbPCxw?si=FpfvpscZRqGOgdJfCm70Tw" target="_blank">Spotify</a>
+      <a href="https://www.youtube.com/@Marakelle" target="_blank">YouTube</a>
+      <a href="https://instagram.com/marakellemusic" target="_blank">Instagram</a>
+    </div>
+  </section>
+
+  <section id="services">
+    <h2>Services</h2>
+    <div class="services">
+      <div class="service">
+        <h3>Consulting</h3>
+        <p>Personalized sessions to help you achieve your goals.</p>
+      </div>
+      <div class="service">
+        <h3>Training</h3>
+        <p>Tailored workshops and courses for your development.</p>
+      </div>
+      <div class="service">
+        <h3>Ongoing Support</h3>
+        <p>Continuous guidance throughout your growth journey.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 Marakelle. All rights reserved.
+  </footer>
+
+</body>
+</html>
