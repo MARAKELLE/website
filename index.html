@@ -2,200 +2,273 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Marakelle</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <!-- FONT -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     /* RESET & BASE */
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #C50305;
-      color: #FFF;
-      display: flex; flex-direction: column; align-items: center;
+      background-color: #C50305;  /* brand red */
+      color: #FFFFFF;
+      line-height: 1.6;
       min-height: 100vh;
-      line-height:1.6;
-      animation: fadeIn 1.2s ease-in;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeIn 1.5s ease-in;
     }
-    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
     /* NAVBAR + HAMBURGER */
-    header {
-      position: fixed; top:0; left:0; width:100%;
+    nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
       background: rgba(0,0,0,0.2);
-      display:flex; align-items:center; justify-content: space-between;
-      padding: 10px 20px; z-index: 100;
+      padding: 15px 20px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    nav input { display: none; }
+    nav .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      color: #FFF;
+      cursor: pointer;
+      margin-left: auto;
+    }
+    nav .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+    nav .nav-links a {
+      color: #FFF;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background .3s;
+    }
+    nav .nav-links a:hover { background: rgba(255,255,255,0.2); }
+    nav .nav-links a.active { background: rgba(255,255,255,0.4); }
+
+    /* HEADER */
+    header {
+      margin-top: 70px; /* spazio per la navbar */
+      text-align: center;
+      width: 100%;
     }
     header img {
-      height: 40px;
-    }
-    /* checkbox hack */
-    #menu-toggle { display: none; }
-    .hamburger {
-      width: 24px; height: 18px; position: relative;
-      cursor: pointer; display: none;
-    }
-    .hamburger span {
-      position:absolute; height:3px; width:100%; background:#FFF;
-      transition:0.3s;
-    }
-    .hamburger span:nth-child(1){ top:0; }
-    .hamburger span:nth-child(2){ top:7px; }
-    .hamburger span:nth-child(3){ top:14px; }
-
-    nav {
-      display: flex; gap:20px;
-    }
-    nav a {
-      color: #FFF; text-decoration:none; font-weight:600;
-      padding:5px 10px; border-radius:5px;
-      transition: background 0.3s;
-    }
-    nav a:hover { background: rgba(255,255,255,0.2); }
-    nav a.active { background: rgba(255,255,255,0.4); }
-
-    /* MOBILE STYLES */
-    @media (max-width:768px) {
-      .hamburger { display: block; }
-      nav {
-        position: absolute; top:100%; left:0;
-        flex-direction: column; width:100%;
-        background: rgba(0,0,0,0.2);
-        max-height:0; overflow:hidden;
-        transition: max-height 0.3s ease;
-      }
-      #menu-toggle:checked + .hamburger + nav {
-        max-height: 300px; /* adatta in base al numero di link */
-      }
-      nav a {
-        padding:15px 20px;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-      }
-      nav a:last-child { border-bottom:none; }
+      width: 180px;
+      height: auto;
+      display: inline-block;
+      background: transparent;
+      border: none;
     }
 
-    /* CONTENT LAYOUT */
-    main {
-      padding-top: 80px; /* spazio per navbar */
-      width:100%; max-width:900px;
-      margin:auto;
-    }
+    /* SECTIONS */
     section {
+      width: 100%;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
       background: rgba(255,255,255,0.05);
-      margin: 30px 20px; padding:20px;
-      border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.3);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
     section h2 {
-      color:#FFF; font-weight:800; font-size:1.8em;
-      margin-bottom:15px; border-bottom:2px solid #FFF;
-      padding-bottom:8px;
+      font-weight: 800;
+      font-size: 2em;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #FFF;
+      padding-bottom: 10px;
+      color: #FFF;
     }
     section p {
-      color:#FFF; font-weight:400; margin-bottom:10px;
+      font-weight: 400;
+      font-size: 1rem;
+      color: #FFF;
+      margin-bottom: 10px;
     }
 
-    .links, .services-list {
-      display:flex; flex-wrap:wrap; gap:15px;
+    /* LISTEN NOW LINKS */
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+      justify-content: center;
     }
-    .links a, .services-list .item {
-      flex:1 1 calc(50% - 15px);
+    .links a {
       background: rgba(255,255,255,0.1);
-      text-align:center; padding:15px;
-      border-radius:8px; font-weight:600;
-      transition: transform .2s, background .3s;
+      color: #FFF;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background .3s, transform .2s;
     }
-    .links a:hover, .services-list .item:hover {
+    .links a:hover {
       background: rgba(255,255,255,0.2);
       transform: translateY(-3px);
     }
-    @media(max-width:480px) {
-      .links a, .services-list .item {
-        flex:1 1 100%;
-      }
+
+    /* SERVICES */
+    .services {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .service {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      transition: transform .3s;
+    }
+    .service:hover { transform: translateY(-5px); }
+    .service h3 {
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #FFF;
     }
 
     /* CONTACT FORM */
-    .contact-form {
-      display:flex; flex-direction:column; gap:15px;
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
-    .contact-form input,
-    .contact-form textarea {
-      width:100%; padding:12px; border:none;
-      border-radius:5px; font-size:1rem;
+    input, textarea {
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
     }
-    .contact-form button {
-      padding:12px; background:#FFF; color:#C50305;
-      border:none; border-radius:5px;
-      font-weight:700; cursor:pointer;
+    button {
+      padding: 12px;
+      background: #FFF;
+      color: #C50305;
+      border: none;
+      border-radius: 5px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
       transition: opacity .3s;
     }
-    .contact-form button:hover { opacity:0.9; }
+    button:hover { opacity: 0.85; }
 
     /* FOOTER */
     footer {
-      width:100%; text-align:center;
-      padding:20px; font-size:0.9rem;
-      color:#FFF; background: rgba(0,0,0,0.1);
-      margin-top:auto;
+      width: 100%;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.05);
+      border-top: 1px solid rgba(255,255,255,0.2);
+      margin-top: auto;
+      color: #FFF;
+    }
+
+    /* MOBILE ONLY: hamburger + nav-collapse + layout tweaks */
+    @media (max-width: 768px) {
+      nav {
+        justify-content: space-between;
+      }
+      nav .hamburger {
+        display: block;
+      }
+      nav .nav-links {
+        position: absolute;
+        top: 100%; left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: rgba(0,0,0,0.2);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .3s ease;
+      }
+      nav input:checked + .hamburger + .nav-links {
+        max-height: 300px; /* adatta se aggiungi link */
+      }
+      nav .nav-links a {
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+      nav .nav-links a:last-child {
+        border-bottom: none;
+      }
+
+      /* ridotti margini/spazi */
+      header { margin-top: 90px; }
+      section { margin: 20px; padding: 15px; }
+      .links, .services { gap: 15px; }
+      .links a { flex: 1 1 100%; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="NEWLOGO_MARAKELLE2.png" alt="Marakelle Logo">
-    <input type="checkbox" id="menu-toggle">
-    <label class="hamburger" for="menu-toggle">
-      <span></span><span></span><span></span>
-    </label>
-    <nav>
+  <nav>
+    <input type="checkbox" id="nav-toggle">
+    <label class="hamburger" for="nav-toggle">&#9776;</label>
+    <div class="nav-links">
       <a href="#home" class="active">Home</a>
       <a href="#listen">Listen Now</a>
       <a href="#services">Services</a>
       <a href="#contact">Contact</a>
-    </nav>
+    </div>
+  </nav>
+
+  <header id="home">
+    <img src="NEWLOGO_MARAKELLE2.png" alt="Marakelle Logo">
   </header>
 
-  <main id="home">
-    <section id="listen">
-      <h2>Listen Now</h2>
-      <div class="links">
-        <a href="https://soundcloud.com/marakelle" target="_blank">SoundCloud</a>
-        <a href="https://open.spotify.com/artist/0k5oHLULi2yI3HWeIbPCxw?si=FpfvpscZRqGOgdJfCm70Tw" target="_blank">Spotify</a>
-        <a href="https://www.youtube.com/@Marakelle" target="_blank">YouTube</a>
-        <a href="https://instagram.com/marakellemusic" target="_blank">Instagram</a>
-      </div>
-    </section>
+  <section id="listen">
+    <h2>Listen Now</h2>
+    <div class="links">
+      <a href="https://soundcloud.com/marakelle" target="_blank">SoundCloud</a>
+      <a href="https://open.spotify.com/artist/0k5oHLULi2yI3HWeIbPCxw?si=FpfvpscZRqGOgdJfCm70Tw" target="_blank">Spotify</a>
+      <a href="https://www.youtube.com/@Marakelle" target="_blank">YouTube</a>
+      <a href="https://instagram.com/marakellemusic" target="_blank">Instagram</a>
+    </div>
+  </section>
 
-    <section id="services">
-      <h2>Services</h2>
-      <div class="services-list">
-        <div class="item">
-          <h3>Consulting</h3>
-          <p>Personalized sessions to help you achieve your goals.</p>
-        </div>
-        <div class="item">
-          <h3>Training</h3>
-          <p>Tailored workshops and courses for your development.</p>
-        </div>
-        <div class="item">
-          <h3>Ongoing Support</h3>
-          <p>Continuous guidance throughout your growth journey.</p>
-        </div>
+  <section id="services">
+    <h2>Services</h2>
+    <div class="services">
+      <div class="service">
+        <h3>Consulting</h3>
+        <p>Personalized sessions to help you achieve your goals.</p>
       </div>
-    </section>
+      <div class="service">
+        <h3>Training</h3>
+        <p>Tailored workshops and courses for your development.</p>
+      </div>
+      <div class="service">
+        <h3>Ongoing Support</h3>
+        <p>Continuous guidance throughout your growth journey.</p>
+      </div>
+    </div>
+  </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <form class="contact-form">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea rows="5" placeholder="Your Message" required></textarea>
-        <button type="submit">Send</button>
-      </form>
-    </section>
-  </main>
+  <section id="contact">
+    <h2>Contact</h2>
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
 
   <footer>
     &copy; 2025 Marakelle. All rights reserved.
