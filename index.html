@@ -1,227 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+  <title>Marakelle</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Marakelle</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <!-- FONT -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    /* RESET & BASE */
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #C50305;
-      color: #FFFFFF;
-      line-height: 1.6;
-      display: flex; flex-direction: column; align-items: center;
-      min-height: 100vh;
-      animation: fadeIn 1.5s ease-in;
-    }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-    /* NAVBAR */
-    nav {
-      position: fixed; top: 0; left: 0;
-      width: 100%; background: rgba(0,0,0,0.2);
-      padding: 15px 20px; display: flex; align-items: center; z-index: 1000;
-    }
-    nav input { display: none; }
-    nav .hamburger {
-      display: none;
-      font-size: 1.5rem;
-      color: #FFF;
-      cursor: pointer;
-      margin-left: auto;
-    }
-    nav .nav-links {
-      display: flex; gap: 20px;
-    }
-    nav .nav-links a {
-      color: #FFF; text-decoration: none;
-      font-weight: 600; padding: 5px 10px;
-      border-radius: 5px; transition: background .3s;
-    }
-    nav .nav-links a:hover { background: rgba(255,255,255,0.2); }
-    nav .nav-links a.active { background: rgba(255,255,255,0.4); }
-
-    /* HEADER */
-    header {
-      margin-top: 70px; text-align: center; width: 100%;
-    }
-    header img {
-      width: 180px; height: auto;
-      display: inline-block; background: transparent; border: none;
-    }
-
-    /* SECTIONS */
-    section {
-      width: 100%; max-width: 900px;
-      margin: 40px auto; padding: 20px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    section h2 {
-      font-weight: 800; font-size: 2em;
-      margin-bottom: 20px; border-bottom: 2px solid #FFF;
-      padding-bottom: 10px; color: #FFF;
-    }
-    section p {
-      font-weight: 400; font-size: 1rem;
-      color: #FFF; margin-bottom: 10px;
-    }
-
-    /* LISTEN NOW LINKS */
-    .links {
-      display: flex; flex-wrap: wrap; gap: 15px;
-      margin-top: 20px; justify-content: center;
-    }
-    .links a {
-      background: rgba(255,255,255,0.1);
-      color: #FFF; text-decoration: none;
-      padding: 12px 20px; border-radius: 8px;
-      font-weight: 600; transition: background .3s, transform .2s;
-    }
-    .links a:hover {
-      background: rgba(255,255,255,0.2);
-      transform: translateY(-3px);
-    }
-
-    /* SERVICES */
-    .services {
-      display: flex; flex-direction: column; gap: 20px;
-    }
-    .service {
-      background: rgba(255,255,255,0.1);
-      padding: 20px; border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      transition: transform .3s;
-    }
-    .service:hover { transform: translateY(-5px); }
-    .service h3 {
-      font-weight: 700; margin-bottom: 8px; color: #FFF;
-    }
-
-    /* CONTACT FORM */
-    form {
-      display: flex; flex-direction: column; gap: 15px;
-    }
-    input, textarea {
-      padding: 12px; border: none; border-radius: 5px;
-      font-size: 1rem;
-    }
-    button {
-      padding: 12px; background: #FFF; color: #C50305;
-      border: none; border-radius: 5px;
-      font-weight: 700; font-size: 1.1rem;
-      cursor: pointer; transition: opacity .3s;
-    }
-    button:hover { opacity: 0.85; }
-
-    /* FOOTER */
-    footer {
-      width: 100%; text-align: center;
-      padding: 20px; font-size: 0.9rem;
-      background: rgba(255,255,255,0.05);
-      border-top: 1px solid rgba(255,255,255,0.2);
-      margin-top: auto; color: #FFF;
-    }
-
-    /* MOBILE: DRAWER MENU & LAYOUT TWEAKS */
-    @media (max-width: 768px) {
-      nav {
-        justify-content: space-between;
-      }
-      nav .hamburger {
-        display: block;
-      }
-      nav .nav-links {
-        flex-direction: column;
-        position: fixed; top: 0; left: 0;
-        width: 75%; height: 100vh;
-        background-color: #C50305;
-        transform: translateX(-100%);
-        transition: transform .3s ease-in-out;
-        padding-top: 80px; /* sotto la header */
-      }
-      nav input#nav-toggle:checked + label.hamburger + .nav-links {
-        transform: translateX(0);
-      }
-      nav .nav-links a {
-        padding: 15px 20px;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-      }
-      nav .nav-links a:last-child {
-        border-bottom: none;
-      }
-
-      /* riduci margini/spazi per mobile */
-      header { margin-top: 90px; }
-      section { margin: 20px; padding: 15px; }
-      .links a { flex: 1 1 100%; }
-      .services .service { margin-bottom: 15px; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <nav>
-    <input type="checkbox" id="nav-toggle">
-    <label class="hamburger" for="nav-toggle">☰</label>
-    <div class="nav-links">
-      <a href="#home" class="active">Home</a>
-      <a href="#listen">Listen Now</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
+<!-- Navbar -->
+<div class="mk-top">
+  <div class="mk-bar mk-dark mk-card">
+    <a href="#home" class="mk-bar-item mk-button mk-padding-large">HOME</a>
+    <a href="#services" class="mk-bar-item mk-button mk-padding-large">SERVIZI</a>
+    <a href="#pricing" class="mk-bar-item mk-button mk-padding-large">PREZZI</a>
+    <a href="#contact" class="mk-bar-item mk-button mk-padding-large">CONTATTI</a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="mk-display-container mk-content" style="max-width:1500px;" id="home">
+  <img class="mk-image" src="images/placeholder.jpg" alt="Marakelle" style="min-width:1000px; width:100%;">
+  <div class="mk-display-middle mk-padding-large mk-border mk-wide mk-text-light mk-center">
+    <h1 class="mk-hide-small">MARAKELLE</h1>
+    <h5 class="mk-hide-large mk-hide-medium">MARAKELLE</h5>
+    <h3 class="mk-hide-small">Il tuo spazio, il nostro design</h3>
+  </div>
+</header>
+
+<!-- Servizi -->
+<div class="mk-container mk-padding-64" id="services">
+  <h2>Servizi</h2>
+  <p>Offriamo una gamma di servizi per valorizzare i tuoi spazi.</p>
+  <p class="mk-large mk-text-grey">Amiamo ciò che facciamo.</p>
+  <div class="mk-row-padding mk-center">
+    <div class="mk-quarter">
+      <h3>Progettazione</h3>
+      <p>Soluzioni su misura per ogni esigenza.</p>
     </div>
-  </nav>
-
-  <header id="home">
-    <img src="NEWLOGO_MARAKELLE2.png" alt="Marakelle Logo">
-  </header>
-
-  <section id="listen">
-    <h2>Listen Now</h2>
-    <div class="links">
-      <a href="https://soundcloud.com/marakelle" target="_blank">SoundCloud</a>
-      <a href="https://open.spotify.com/artist/0k5oHLULi2yI3HWeIbPCxw?si=FpfvpscZRqGOgdJfCm70Tw" target="_blank">Spotify</a>
-      <a href="https://www.youtube.com/@Marakelle" target="_blank">YouTube</a>
-      <a href="https://instagram.com/marakellemusic" target="_blank">Instagram</a>
+    <div class="mk-quarter">
+      <h3>Camera da Letto</h3>
+      <p>Comfort e stile per il tuo riposo.</p>
     </div>
-  </section>
-
-  <section id="services">
-    <h2>Services</h2>
-    <div class="services">
-      <div class="service">
-        <h3>Consulting</h3>
-        <p>Personalized sessions to help you achieve your goals.</p>
-      </div>
-      <div class="service">
-        <h3>Training</h3>
-        <p>Tailored workshops and courses for your development.</p>
-      </div>
-      <div class="service">
-        <h3>Ongoing Support</h3>
-        <p>Continuous guidance throughout your growth journey.</p>
-      </div>
+    <div class="mk-quarter">
+      <h3>Bagno</h3>
+      <p>Design funzionale e raffinato.</p>
     </div>
-  </section>
+    <div class="mk-quarter">
+      <h3>Cucina</h3>
+      <p>Spazi innovativi e pratici.</p>
+    </div>
+  </div>
+</div>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send</button>
-    </form>
-  </section>
+<!-- Prezzi -->
+<div class="mk-container mk-light-grey mk-padding-64" id="pricing">
+  <h2>Prezzi</h2>
+  <div class="mk-row-padding" style="margin:0 -16px">
+    <div class="mk-third mk-margin-bottom">
+      <ul class="mk-ul mk-white mk-hover-shadow">
+        <li class="mk-dark mk-xlarge mk-padding-32">Base</li>
+        <li class="mk-padding-16"><b>1</b> Servizio incluso</li>
+        <li class="mk-padding-16"><b>1</b> Revisione gratuita</li>
+        <li class="mk-padding-16"><b>1</b> Consulenza</li>
+        <li class="mk-padding-16">
+          <h2>€19</h2>
+          <span class="mk-opacity">al mese</span>
+        </li>
+        <li class="mk-light-grey mk-padding-24">
+          <button class="mk-button mk-green mk-padding-large">Iscriviti</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-  <footer>
-    &copy; 2025 Marakelle. All rights reserved.
-  </footer>
+<!-- Contatti -->
+<div class="mk-container mk-padding-64" id="contact">
+  <h2>Contattaci</h2>
+  <form action="#" target="_blank">
+    <input class="mk-input mk-border" type="text" placeholder="Nome" required name="Name">
+    <input class="mk-input mk-border" type="email" placeholder="Email" required name="Email">
+    <input class="mk-input mk-border" type="text" placeholder="Oggetto" required name="Subject">
+    <textarea class="mk-input mk-border" placeholder="Messaggio" required name="Message"></textarea>
+    <button class="mk-button mk-dark mk-section" type="submit">Invia</button>
+  </form>
+</div>
 
 </body>
 </html>
