@@ -2,27 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MARAKELLE - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marakelle</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>MARAKELLE Studio</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
-      <a href="repertorio.html">Repertorio Discografico</a>
-      <a href="bio.html">Bio</a>
-      <a href="booking.html">Booking</a>
+    <div class="logo">MARAKELLE</div>
+    <nav class="mobile-nav">
+      <input type="checkbox" id="menu-toggle" />
+      <label for="menu-toggle" class="menu-icon">&#9776;</label>
+      <ul class="menu">
+        <li><a href="services.html">Services</a></li>
+        <li><a href="repertoire.html">Repertoire</a></li>
+        <li><a href="bio.html">Bio</a></li>
+        <li><a href="booking.html">Booking</a></li>
+      </ul>
     </nav>
   </header>
-  <div class="container">
-    <h2>Welcome to MARAKELLE Studio</h2>
-    <p>Your go-to place for professional recording, mixing, and mastering services. Let’s create great music together.</p>
-  </div>
+  <main class="hero">
+    <h1>Sound Beyond the Limit</h1>
+    <p>Recording, Mixing & Mastering Studio</p>
+    <a href="booking.html" class="cta">Book a Session</a>
+  </main>
   <footer>
-    &copy; 2025 MARAKELLE Studio
+    <p>&copy; 2025 Marakelle Studio</p>
   </footer>
 </body>
 </html>
